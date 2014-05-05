@@ -8,10 +8,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>NuBay</title>
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+     <title>NuBay</title>
   </head>
   <body>
-    <h1>Welcome to NuBay</h1>
+  <div id="wrapper">
+      <div id="header">
+
+          <div id="logo"><h1>NUBAY</h1></div>
+          <div id="headerend"></div>
+      </div>
+
+      <div id="contentWrapper">
+          <div id="content">
+              <h2>Welcome to NuBay</h2>
+
+          </div>
+
+      </div>
+      <div id="footer"><center>Created by: jjensen</center></div>
+  </div>
+
 
   </body>
 </html>

@@ -14,26 +14,45 @@
  %>
 <!DOCTYPE html>
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <title>Item <%item.getId(); %></title>
+</head>
 <body>
+<div id="wrapper">
+    <div id="header">
 
-<h1>Auction Item <% out.print(item.getId()); %></h1>
-<img width="200" src="http://localhost:8080/lab2/images/img.png"/>
-<dl>
-    <dt>Current Bid:</dt>
-    <dd><%out.print(item.getCurrentBid()); %></dd>
-    <dt>Time Left</dt>
-    <dd><% out.print(item.getTimeLeft());%> Days</dd>
-    <form method="POST" action="item">
-        <input type="hidden" name="id" value="<% out.print(item.getId());%>"/>
+        <div id="logo"><h1>NUBAY</h1></div>
+        <div id="headerend"></div>
+    </div>
 
-    <dt>
-        <input name="bid"/>
-    </dt>
-    <dd>
-        <input type="submit" value="Place a bid"/>
-    </dd>
-    </form>
-</dl>
+    <div id="contentWrapper">
+        <div id="content">
+            <h1>Auction Item <% out.print(item.getId()); %></h1>
+            <img width="200" src="http://localhost:8080/lab2/images/img.png"/>
+            <dl>
+                <dt>Current Bid:</dt>
+                <dd><%out.print(item.getCurrentBid()); %></dd>
+                <dt>Time Left</dt>
+                <dd><% out.print(item.getTimeLeft());%> Days</dd>
+                <form method="POST" action="item">
+                    <input type="hidden" name="id" value="<% out.print(item.getId());%>"/>
+
+                    <dt>
+                        <input name="bid"/>
+                    </dt>
+                    <dd>
+                        <input type="submit" value="Place a bid"/>
+                    </dd>
+                </form>
+            </dl>
+
+        </div>
+
+    </div>
+    <div id="footer"><center>Created by: jjensen</center></div>
+</div>
+
 </body>
 </html>
 
