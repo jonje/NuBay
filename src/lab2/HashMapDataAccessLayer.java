@@ -30,13 +30,21 @@ public class HashMapDataAccessLayer implements DataAccessLayer {
     @Override
     public boolean update(Item item) {
         Item oldItem = items.get(item.getId());
-
-        if(item.getExperation() == null) {
-            item.setExperationDate(oldItem.getExperation());
-            items.put(item.getId(), item);
+        double currentBid = oldItem.getCurrentBid();
+        boolean isSuccesful;
+        if(currentBid < item.getCurrentBid()) {
+            if(item.getExperation() == null) {
+                item.setExperationDate(oldItem.getExperation());
+                items.put(item.getId(), item);
+            } else {
+                items.put(item.getId(), item);
+            }
+            isSuccesful = true;
         } else {
-            items.put(item.getId(), item);
+            isSuccesful = false;
+
         }
-        return true;
+
+        return isSuccesful;
     }
 }

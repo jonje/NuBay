@@ -36,6 +36,7 @@ public class ItemRouter extends HttpServlet {
 
         }
 
+
         RequestDispatcher view;
 
         if(!match) {
@@ -59,13 +60,17 @@ public class ItemRouter extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String bid = request.getParameter("bid");
+        if(bid.isEmpty()) {
+            bid = "1.00";
+        }
+
         Item item = new Item();
         item.setBid(bid);
         item.setId(request.getParameter("id"));
 
         dal.update(item);
 
-        response.sendRedirect("/lab2/item/" + item.getId());
+        response.sendRedirect(request.getContextPath() + "/item/" + item.getId());
     }
 
 }

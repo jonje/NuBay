@@ -1,5 +1,6 @@
 <%@ page import="lab2.Item" %>
 <%@ page import="org.joda.time.Period" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%--
   Created by IntelliJ IDEA.
   User: jjensen
@@ -10,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Item item = (Item)request.getAttribute("item");
+    DecimalFormat formatter = new DecimalFormat("#.00");
 
  %>
 <!DOCTYPE html>
@@ -29,10 +31,10 @@
     <div id="contentWrapper">
         <div id="content">
             <h1>Auction Item <% out.print(item.getId()); %></h1>
-            <img width="200" src="http://localhost:8080/lab2/images/img.png"/>
+            <img width="200" src="http://localhost:8080/lab2/images/img.png" />
             <dl>
                 <dt>Current Bid:</dt>
-                <dd><%out.print(item.getCurrentBid()); %></dd>
+                <dd><%out.print(formatter.format(item.getCurrentBid())); %></dd>
                 <dt>Time Left</dt>
                 <dd><% out.print(item.getTimeLeft());%> Days</dd>
                 <form method="POST" action="item">

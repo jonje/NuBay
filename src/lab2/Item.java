@@ -10,14 +10,14 @@ import org.joda.time.format.DateTimeFormatter;
  */
 public class Item {
     private String id;
-    private BigDecimal currentBid;
+    private double currentBid;
     private DateTime experationDate;
     private DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yyyy");
 
     public Item (String id, String experationDate) {
         this.id = id;
         this.experationDate = formatter.parseDateTime(experationDate);
-        this.currentBid = new BigDecimal("0.00");
+        this.currentBid = 0.00;
     }
 
     public Item() {
@@ -34,12 +34,12 @@ public class Item {
     }
 
 
-    public BigDecimal getCurrentBid() {
+    public double getCurrentBid() {
         return currentBid;
     }
 
     public void setBid(String amount) {
-        currentBid = new BigDecimal(amount);
+        currentBid = Double.parseDouble(amount);
     }
 
     public int getTimeLeft() {
