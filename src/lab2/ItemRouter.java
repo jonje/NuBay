@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class ItemRouter extends HttpServlet {
     private static DataAccessLayer dal = DataAccessFactory.create("hashmap");
 
-    private final Pattern pattern = Pattern.compile("(/item)(/)([0-9]+)");
+    private final Pattern pattern = Pattern.compile("(/item)(/)([0-9]+)([/image]*)");
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -24,21 +24,34 @@ public class ItemRouter extends HttpServlet {
         Matcher matcher = pattern.matcher(uri);
 
         boolean match = false;
+        boolean imageFound = false;
+
         while(matcher.find()) {
             results = matcher.group(3);
             match = true;
 
+            if(!matcher.group(4).isEmpty()) {
+                imageFound = true;
+            }
+
         }
+
+        RequestDispatcher view;
 
         if(!match) {
             response.setStatus(404);
-            RequestDispatcher view = request.getRequestDispatcher("/404.html");
+            view = request.getRequestDispatcher("/404.html");
             view.forward(request, response);
+
+        } else if(imageFound) {
+            view = getServletContext().getRequestDispatcher("/images/img.png");
+            view.forward(request, response);
+
         } else  {
             request.setAttribute("id", results);
             request.setAttribute("dal", dal);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/getItem");
-            dispatcher.include(request, response);
+            view = getServletContext().getRequestDispatcher("/getItem");
+            view.include(request, response);
         }
 
     }

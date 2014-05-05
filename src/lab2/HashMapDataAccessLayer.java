@@ -21,6 +21,7 @@ public class HashMapDataAccessLayer implements DataAccessLayer {
         items.put("1240", new Item("1240", "09/27/2014"));
 
     }
+
     @Override
     public Item getItem(String id) {
         return items.get(id);

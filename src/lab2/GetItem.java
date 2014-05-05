@@ -21,6 +21,10 @@ public class GetItem extends HttpServlet {
         DataAccessLayer dal = (DataAccessLayer)request.getAttribute("dal");
         Item item = dal.getItem((String)request.getAttribute("id"));
         //JOptionPane.showMessageDialog(null, item.getId(), "Reached Point:", JOptionPane.INFORMATION_MESSAGE);
+
+        if(item == null) {
+
+        }
         request.setAttribute("item", item);
 
         RequestDispatcher view = request.getRequestDispatcher("/item.jsp");
