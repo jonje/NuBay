@@ -1,24 +1,61 @@
 package lab2;
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.regex.Pattern;
+
+import java.math.BigDecimal;
+import org.joda.time.*;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 /**
  * Created by jjensen on 4/23/14.
  */
-@WebServlet("/item")
-public class Item  extends HttpServlet {
+public class Item {
+    private String id;
+    private BigDecimal currentBid;
+    private DateTime experationDate;
+    private DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yyyy");
 
-    private final Pattern pattern = Pattern.compile("(/)([0-9]+)");
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/getItem");
-        dispatcher.include(request, response);
+    public Item (String id, String experationDate) {
+        this.id = id;
+        this.experationDate = formatter.parseDateTime(experationDate);
+        this.currentBid = new BigDecimal("0.00");
     }
+
+    public Item() {
+
+    }
+
+    public String getId() {
+        return id;
+
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
+    public BigDecimal getCurrentBid() {
+        return currentBid;
+    }
+
+    public void setBid(String amount) {
+        currentBid = new BigDecimal(amount);
+    }
+
+    public int getTimeLeft() {
+        DateTime now = new DateTime();
+        int days = Days.daysBetween(now.withTimeAtStartOfDay(), experationDate.withTimeAtStartOfDay()).getDays();
+        return days;
+
+    }
+
+    public void setExperationDate(DateTime date) {
+        experationDate = date;
+    }
+
+    public DateTime getExperation() {
+        return experationDate;
+    }
+
 
 }
