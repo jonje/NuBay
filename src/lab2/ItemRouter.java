@@ -1,4 +1,8 @@
 package lab2;
+import lab2.model.DataAccessFactory;
+import lab2.model.DataAccessLayer;
+import lab2.model.Item;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

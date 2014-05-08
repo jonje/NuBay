@@ -1,4 +1,4 @@
-package lab2;
+package lab2.model;
 
 import java.math.BigDecimal;
 import org.joda.time.*;
@@ -9,37 +9,37 @@ import org.joda.time.format.DateTimeFormatter;
  * Created by jjensen on 4/23/14.
  */
 public class Item {
-    private String id;
-    private double currentBid;
+    private long id;
+    private BigDecimal currentBid;
     private DateTime experationDate;
     private DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yyyy");
 
-    public Item (String id, String experationDate) {
+    public Item (long id, String experationDate) {
         this.id = id;
         this.experationDate = formatter.parseDateTime(experationDate);
-        this.currentBid = 0.00;
+        this.currentBid = new BigDecimal("0.00");
     }
 
     public Item() {
 
     }
 
-    public String getId() {
+    public long getId() {
         return id;
 
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
 
-    public double getCurrentBid() {
+    public BigDecimal getCurrentBid() {
         return currentBid;
     }
 
     public void setBid(String amount) {
-        currentBid = Double.parseDouble(amount);
+        currentBid = new BigDecimal(amount);
     }
 
     public int getTimeLeft() {

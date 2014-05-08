@@ -1,4 +1,4 @@
-package lab2;
+package lab2.model;
 
 /**
  * Created by jjensen on 4/25/14.

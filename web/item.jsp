@@ -1,4 +1,4 @@
-<%@ page import="lab2.Item" %>
+<%@ page import="lab2.model.Item" %>
 <%@ page import="org.joda.time.Period" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%--
