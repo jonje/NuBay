@@ -1,8 +1,8 @@
-package lab2;
+package edu.neumont.jjensen;
 
-import lab2.model.ApplicationContext;
-import lab2.model.DataAccessFactory;
-import lab2.model.DataAccessLayer;
+import edu.neumont.jjensen.model.ApplicationContext;
+import edu.neumont.jjensen.model.DataAccessFactory;
+import edu.neumont.jjensen.model.DataAccessLayer;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

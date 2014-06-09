@@ -1,4 +1,4 @@
-package lab2;
+package edu.neumont.jjensen;
 
 import java.util.HashMap;
 import java.util.Map;

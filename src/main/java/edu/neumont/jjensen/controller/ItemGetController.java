@@ -1,8 +1,8 @@
-package lab2.controller;
+package edu.neumont.jjensen.controller;
 
-import lab2.model.ApplicationContext;
-import lab2.model.DataAccessLayer;
-import lab2.modelandview.ModelAndView;
+import edu.neumont.jjensen.model.ApplicationContext;
+import edu.neumont.jjensen.model.DataAccessLayer;
+import edu.neumont.jjensen.modelandview.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ public class ItemGetController {
     public ModelAndView retrieveItem(long id) {
         ModelAndView modelView = new ModelAndView();
         modelView.setModel(dal.getItem(id));
-        modelView.setView("item.jsp");
+        modelView.setView("/WEB-INF/item.jsp");
         return modelView;
     }
 

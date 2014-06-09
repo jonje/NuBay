@@ -1,6 +1,6 @@
-package lab2;
+package edu.neumont.jjensen;
 
-import lab2.model.DataAccessLayer;
+import edu.neumont.jjensen.model.DataAccessLayer;
 
 /**
  * Created by jjensen on 5/13/14.

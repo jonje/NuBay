@@ -1,4 +1,4 @@
-package lab2.model;
+package edu.neumont.jjensen.model;
 
 /**
  * Created by jjensen on 4/24/14.

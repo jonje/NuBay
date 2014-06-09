@@ -7,6 +7,23 @@
   <version>1.0.0</version>
   <name>NuBay Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+        <finalName>NuBay</finalName>
+    </build>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -18,18 +35,15 @@
           <groupId>javax</groupId>
           <artifactId>javaee-api</artifactId>
           <version>6.0</version>
+      </dependency>
 
-      </dependency>
       <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-7.0</artifactId>
-          <version>1.0.0.Final</version>
-          <type>pom</type>
-          <scope>provided</scope>
+          <groupId>joda-time</groupId>
+          <artifactId>joda-time</artifactId>
+          <version>2.3</version>
       </dependency>
+
 
   </dependencies>
-  <build>
-    <finalName>NuBay</finalName>
-  </build>
+
 </project>

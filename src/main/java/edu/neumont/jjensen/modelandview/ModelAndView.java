@@ -1,4 +1,4 @@
-package lab2.modelandview;
+package edu.neumont.jjensen.modelandview;
 
 /**
  * Created by jjensen on 5/7/14.
@@ -17,7 +17,7 @@ public class ModelAndView {
     }
 
     public String getViewName() {
-        return null;
+        return view;
     }
 
     public void setView(String view) {

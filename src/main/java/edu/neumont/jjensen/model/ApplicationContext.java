@@ -1,4 +1,4 @@
-package lab2.model;
+package edu.neumont.jjensen.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class ApplicationContext {
     private static ApplicationContext applicationContext = new ApplicationContext();
-    private Map<String, Object> contextMap = new HashMap<>();
+    private Map<String, Object> contextMap = new HashMap<String, Object>();
 
     public static ApplicationContext getInstance() {
         return applicationContext;
