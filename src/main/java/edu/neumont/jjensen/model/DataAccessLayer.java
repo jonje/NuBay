@@ -7,6 +7,6 @@ public interface DataAccessLayer {
     public Item getItem(long id);
     public boolean update(Item item);
     public long create(Item item);
-    
+    public boolean delete(long id);
 
 }

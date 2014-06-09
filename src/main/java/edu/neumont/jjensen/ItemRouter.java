@@ -62,7 +62,7 @@ public class ItemRouter extends HttpServlet {
 
         if(!match) {
             response.setStatus(404);
-            view = request.getRequestDispatcher("/404.html");
+            view = request.getRequestDispatcher("/404.jsp");
             view.forward(request, response);
 
         } else if(function != null) {
@@ -80,6 +80,7 @@ public class ItemRouter extends HttpServlet {
                     modelView.setView("/WEB-INF/newItem.jsp");
                     break;
                 case "delete" :
+                    modelView = getController.deleteItem(id);
                     break;
                 case "update" :
                     modelView = getController.retrieveItem(id);
@@ -89,7 +90,8 @@ public class ItemRouter extends HttpServlet {
                     break;
                 default:
                     modelView = new ModelAndView();
-                    modelView.setView("/404.html");
+                    request.setAttribute("itemId", id);
+                    modelView.setView("/404.jsp");
             }
 
             view = getServletContext().getRequestDispatcher(modelView.getViewName());
@@ -107,7 +109,8 @@ public class ItemRouter extends HttpServlet {
 
             } else {
                 response.setStatus(404);
-                view = getServletContext().getRequestDispatcher("/404.html");
+                request.setAttribute("itemId", id);
+                view = getServletContext().getRequestDispatcher("/404.jsp");
                 view.forward(request, response);
 
             }
@@ -145,7 +148,7 @@ public class ItemRouter extends HttpServlet {
                 break;
             default:
                 modelView = new ModelAndView();
-                modelView.setView("/404.html");
+                modelView.setView("/404.jsp");
 
 
         }

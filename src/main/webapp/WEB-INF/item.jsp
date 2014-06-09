@@ -15,7 +15,7 @@
     <jsp:body>
         <!--Your content goes here-->
         <h1>${model.title}</h1>
-        <img src="${model.imgUrl}" width="200" height="200"/><a href="/item/${model.id}/update">Edit</a>
+        <img src="${model.imgUrl}" width="200" height="200"/><a href="/item/${model.id}/update">Edit</a><a href="/item/${model.id}/delete">Delete</a>
         <dl>
             <dt>Current Bid:</dt>
             <dd>$ ${model.currentBid}</dd>

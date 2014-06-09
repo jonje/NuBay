@@ -2,6 +2,7 @@ package edu.neumont.jjensen.controller;
 
 import edu.neumont.jjensen.model.ApplicationContext;
 import edu.neumont.jjensen.model.DataAccessLayer;
+import edu.neumont.jjensen.model.Item;
 import edu.neumont.jjensen.modelandview.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,15 @@ public class ItemGetController {
         return null;
     }
 
-    public ModelAndView deleteItem() {
-        return null;
+    public ModelAndView deleteItem(long id) {
+        ModelAndView modelView = new ModelAndView();
+        modelView.setModel(dal.getItem(id));
+
+        if(dal.delete(id)) {
+            modelView.setView("/WEB-INF/deleted.jsp");
+        } else {
+            modelView.setView("/item/" + id);
+        }
+        return modelView;
     }
 }

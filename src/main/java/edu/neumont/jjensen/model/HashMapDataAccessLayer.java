@@ -61,6 +61,12 @@ public class HashMapDataAccessLayer implements DataAccessLayer {
         return key;
     }
 
+    @Override
+    public boolean delete(long id) {
+        items.remove(id);
+        return true;
+    }
+
     /**
      * Returns the last Item id from the hashmap
      * @return long
