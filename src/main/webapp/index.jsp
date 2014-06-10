@@ -10,5 +10,10 @@
 <t:genericPage>
     <jsp:body>
         <h1>Welcome to Nubay</h1>
+        <hr>
+        <form method="post" action="/search">
+            Search: <input type="text" name="searchBar"/>
+            <input type="submit" />
+        </form>
     </jsp:body>
 </t:genericPage>
