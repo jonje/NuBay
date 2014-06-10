@@ -15,9 +15,12 @@
     <jsp:body>
         <!--Your content goes here-->
         <h1>${model.title}</h1>
+        <p>${model.description}</p>
         <img src="${model.imgUrl}" width="200" height="200"/><a href="/item/${model.id}/update">Edit</a><a href="/item/${model.id}/delete">Delete</a>
         <dl>
+            <dt>Starting Bid:$ ${model.startingBid}</dt>
             <dt>Current Bid:</dt>
+
             <dd>$ ${model.currentBid}</dd>
             <dt>Time Left</dt>
             <dd><c:out value=" ${model.timeLeft}"/> Days</dd>

@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
+import java.math.BigDecimal;
 import java.util.IllegalFormatException;
 
 /**
@@ -70,12 +71,13 @@ public class ItemPostController {
 
         if(bid.isEmpty()) {
             bid = "1.00";
+            bid = item.getCurrentBid().add(new BigDecimal(bid)).toString();
+
         }
 
-        if(item.isBidGreater(bid)) {
+        if(item.isBidGreaterThanStarting(bid) && item.isBidGreater(bid)) {
             item.setBid(bid);
             request.setAttribute("bidStatus", true);
-
         } else {
             request.setAttribute("bidStatus", false);
 
@@ -108,6 +110,10 @@ public class ItemPostController {
         String expiration = request.getParameter("expiration");
         item.setExpirationDate(expiration);
         item.setTitle(request.getParameter("title"));
+        item.setDescription(request.getParameter("description"));
+        if(item.getNumberOfBids() == 0) {
+            item.setStartingBid(request.getParameter("startingBid"));
+        }
         item.setImgUrl(request.getParameter("imgUrl"));
 
         return item;

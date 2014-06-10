@@ -9,7 +9,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:genericPage>
     <jsp:body>
@@ -18,6 +17,8 @@
         <form method="post" action="/item/create">
             <input type="hidden" name="itemId" value="${model.id}"/>
             Title: <input type="text" name="title" value="${model.title}"/><br/>
+            Description: <input type="text" name="description" value="${model.description}"/><br/>
+            Starting bid: <input type="text" name="startingBid" value="${model.startingBid}"/><br/>
             Expiration Date: <input type="text" name="expiration" value="${model.formattedExpiration}"/>(mm/dd/yyyy)<br/>
             Img: <input type="text" name="imgUrl" value="${model.imgUrl}"/><br/>
             <input type="submit" value="Add/Update"/>

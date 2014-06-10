@@ -15,22 +15,52 @@ import java.text.SimpleDateFormat;
 public class Item {
     private long id;
     private BigDecimal currentBid;
+    private BigDecimal startingBid;
     private DateTime expirationDate;
     private DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yyyy");
     private String imgUrl;
     private String title;
+    private String description;
+    private int numberOfBids = 0;
 
-    public Item (long id, String title, String imgUrl, String expirationDate) {
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getStartingBid() {
+
+        return startingBid;
+    }
+
+    public void setStartingBid(String startingBid) {
+
+        this.startingBid = new BigDecimal(startingBid);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Item (long id, String title, String description, String startingBid, String imgUrl, String expirationDate) {
         this.id = id;
         this.expirationDate = formatter.parseDateTime(expirationDate);
         this.currentBid = new BigDecimal("0.00");
         this.imgUrl = imgUrl;
         this.title = title;
+        this.startingBid = new BigDecimal(startingBid);
+        this.description = description;
+
+
     }
 
     public Item() {
         currentBid = new BigDecimal("0.00");
 
+    }
+
+    public int getNumberOfBids() {
+        return numberOfBids;
     }
 
     public long getId() {
@@ -49,6 +79,7 @@ public class Item {
 
     public void setBid(String amount) {
         currentBid = new BigDecimal(amount);
+        numberOfBids++;
     }
 
     public int getTimeLeft() {
@@ -88,6 +119,11 @@ public class Item {
     public boolean isBidGreater(String bid) {
         BigDecimal newBid = new BigDecimal(bid);
         return currentBid.compareTo(newBid) < 0;
+    }
+
+    public boolean isBidGreaterThanStarting(String bid) {
+        BigDecimal newBid = new BigDecimal(bid);
+        return startingBid.compareTo(newBid) <= 0;
     }
 
     public void setTitle(String title) {
