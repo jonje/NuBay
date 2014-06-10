@@ -1,9 +1,7 @@
 package edu.neumont.jjensen.model;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by jjensen on 4/25/14.
@@ -65,6 +63,12 @@ public class HashMapDataAccessLayer implements DataAccessLayer {
     public boolean delete(long id) {
         items.remove(id);
         return true;
+    }
+
+    @Override
+    public Set<Item> getAll() {
+        Set<Item> itemSet = new HashSet<>(items.values());
+        return itemSet;
     }
 
     /**
