@@ -21,6 +21,7 @@ public class ServiceLoader implements ServletContextListener {
         DataAccessLayer dal = DataAccessFactory.create("hashmap");
         ApplicationContext context = ApplicationContext.getInstance();
         context.setAttribute("dal", dal);
+
     }
 
     @Override

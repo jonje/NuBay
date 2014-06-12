@@ -16,7 +16,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <title>Item ${model.id}</title>
+    <title></title>
 </head>
 <body>
 

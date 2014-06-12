@@ -12,6 +12,20 @@ table th {
 
 }
 
+ol {
+    list-style: none;
+}
+
+#results li {
+    border: 1px solid #666666;
+    font-size: 30px;
+    list-style: none;
+}
+
+.boldText {
+    font-weight: bold;
+}
+
 #content-2-2 th {
     color: #000000;
     background-image: linear-gradient(#f8c034, #d79c08);

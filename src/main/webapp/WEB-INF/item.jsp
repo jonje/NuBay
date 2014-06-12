@@ -9,21 +9,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:genericPage>
     <jsp:body>
         <!--Your content goes here-->
         <h1>${model.title}</h1>
         <p>${model.description}</p>
-        <img src="${model.imgUrl}" width="200" height="200"/><a href="/item/${model.id}/update">Edit</a><a href="/item/${model.id}/delete">Delete</a>
+        <img src="${model.imgUrl}" width="200" height="200"/>&nbsp; <a href="/item/${model.id}/update">Edit</a>&nbsp;<a href="/item/${model.id}/delete">Delete</a>
         <dl>
-            <dt>Starting Bid:$ ${model.startingBid}</dt>
+            <dt>Number Of Bids: ${model.numberOfBids}</dt>
             <dt>Current Bid:</dt>
 
             <dd>$ ${model.currentBid}</dd>
             <dt>Time Left</dt>
-            <dd><c:out value=" ${model.timeLeft}"/> Days</dd>
+            <dd><c:out value=" ${model.formattedExpiration}"/></dd>
             <form method="POST" action="/item/bid">
                 <input type="hidden" name="id" value="${model.id}"/>
 
