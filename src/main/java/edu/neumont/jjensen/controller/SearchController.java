@@ -3,10 +3,12 @@ package edu.neumont.jjensen.controller;
 import edu.neumont.jjensen.model.ApplicationContext;
 import edu.neumont.jjensen.model.DataAccessLayer;
 import edu.neumont.jjensen.model.Item;
+import edu.neumont.jjensen.modelandview.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,25 +27,30 @@ public class SearchController {
         this.dal = (DataAccessLayer) context.getAttribute("dal");
     }
 
-    public Set<Item> getResults(String[] terms) {
+    public ModelAndView getResults(List<String> terms) {
         Set<Item> items = dal.getAll();
-        Set<Item> results = new HashSet<>();
+        List<Item> results = new ArrayList<>();
+        ModelAndView modelAndView = new ModelAndView();
 
         for(Item item : items) {
             for(String term : terms) {
-                if(doesMatch(item, term)) {
+                if(doesMatch(item, term) && (!item.isClosed())) {
                     results.add(item);
                 }
             }
 
         }
-
-        return results;
+        modelAndView.setModel(results);
+        modelAndView.setView("/search?page=1");
+        return modelAndView;
 
     }
 
     private boolean doesMatch(Item item, String searchTerm) {
-        return item.getTitle().contains(searchTerm) || item.getDescription().contains(searchTerm) ? true : false;
+        String title = item.getTitle().toLowerCase();
+        String description = item.getDescription().toLowerCase();
+        searchTerm = searchTerm.toLowerCase();
+        return title.contains(searchTerm)|| description.contains(searchTerm);
     }
 
 }

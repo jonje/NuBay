@@ -12,13 +12,23 @@ public class HashMapDataAccessLayer implements DataAccessLayer {
 
     public HashMapDataAccessLayer() {
         //Setup the Hashmap item inventory
-        items.put(1234L, new Item(1234L, "Something", "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/27/2014"));
-        items.put(1235L, new Item(1235L, "Something",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "07/27/2014"));
-        items.put(1236L, new Item(1236L, "Something",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "06/05/2014"));
-        items.put(1237L, new Item(1237L, "Something",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
-        items.put(1238L, new Item(1238L, "Something",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "05/29/2014"));
-        items.put(1239L, new Item(1239L, "Something",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "08/17/2014"));
-        items.put(1240L, new Item(1240L, "Something",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/27/2014"));
+        items.put(1234L, new Item(1234L, "Cool ArtWork", "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/27/2014"));
+        items.put(1235L, new Item(1235L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "07/27/2014"));
+        items.put(1236L, new Item(1236L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "06/05/2014"));
+        items.put(1237L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1238L, new Item(1238L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "05/29/2014"));
+        items.put(1239L, new Item(1239L, "Cool ArtWork",  "This is a really cool Artwork", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "08/17/2014"));
+        items.put(1240L, new Item(1240L, "Cool ArtWork",  "This is a really cool Art", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/27/2014"));
+        items.put(1241L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1242L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1243L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1244L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1245L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1246L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1247L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1248L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1249L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://cdn.visualnews.com/wp-content/uploads/2013/07/5-art-of-%CF%80.png", "09/02/2014"));
+        items.put(1250L, new Item(1237L, "Cool ArtWork",  "This is a really cool product", "2.00", "http://2.bp.blogspot.com/-_dsYi6iblTI/UMUSVa7S7yI/AAAAAAAAAw8/aruFKC_wMCo/s1600/diablo_head-7.jpg", "09/02/2014"));
 
     }
 

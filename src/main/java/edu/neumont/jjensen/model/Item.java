@@ -2,8 +2,12 @@ package edu.neumont.jjensen.model;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.joda.time.Period;
+import org.joda.time.PeriodType;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 import javax.swing.*;
 import java.math.BigDecimal;
@@ -22,6 +26,24 @@ public class Item {
     private String title;
     private String description;
     private int numberOfBids = 0;
+
+    public Item() {
+        currentBid = new BigDecimal("0.00");
+
+    }
+
+    public Item (long id, String title, String description, String startingBid, String imgUrl, String expirationDate) {
+        this.id = id;
+        this.expirationDate = formatter.parseDateTime(expirationDate);
+        this.currentBid = new BigDecimal(startingBid);
+        this.imgUrl = imgUrl;
+        this.title = title;
+        this.startingBid = new BigDecimal(startingBid);
+        this.description = description;
+
+
+    }
+
 
 
     public void setDescription(String description) {
@@ -42,22 +64,6 @@ public class Item {
         return description;
     }
 
-    public Item (long id, String title, String description, String startingBid, String imgUrl, String expirationDate) {
-        this.id = id;
-        this.expirationDate = formatter.parseDateTime(expirationDate);
-        this.currentBid = new BigDecimal("0.00");
-        this.imgUrl = imgUrl;
-        this.title = title;
-        this.startingBid = new BigDecimal(startingBid);
-        this.description = description;
-
-
-    }
-
-    public Item() {
-        currentBid = new BigDecimal("0.00");
-
-    }
 
     public int getNumberOfBids() {
         return numberOfBids;
@@ -106,10 +112,18 @@ public class Item {
     }
 
     public String getFormattedExpiration() {
-        DateTimeFormatter dateParser = DateTimeFormat.forPattern("MM/dd/yyyy");
-        String formattedDate = dateParser.print(expirationDate);
+        DateTime startDate = DateTime.now();
+        Period period = new Period(startDate, expirationDate, PeriodType.dayTime());
 
-        return formattedDate;
+        PeriodFormatter formatter = new PeriodFormatterBuilder()
+                .appendPrefix("Day:", " Days:").appendDays()
+                .appendPrefix(" Hour: ", " hours:  ").appendHours()
+                .appendPrefix(" Minute: ", " Minutes: ").appendMinutes()
+                .appendPrefix(" Second: ", " Seconds: ").appendSeconds()
+                .toFormatter();
+
+
+        return formatter.print(period);
     }
 
     public DateTime getExpiration() {
@@ -120,6 +134,12 @@ public class Item {
         BigDecimal newBid = new BigDecimal(bid);
         return currentBid.compareTo(newBid) < 0;
     }
+
+    public boolean isClosed() {
+        DateTime now = DateTime.now();
+        return now.isAfter(expirationDate);
+    }
+
 
     public boolean isBidGreaterThanStarting(String bid) {
         BigDecimal newBid = new BigDecimal(bid);
