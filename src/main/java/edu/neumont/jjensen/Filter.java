@@ -30,7 +30,8 @@ public class Filter implements javax.servlet.Filter{
             DateTime createdTime = new DateTime(session.getCreationTime());
             DateTime now = DateTime.now();
 
-            if((now.getMillis() - createdTime.getMillis()) > 10000000){
+            if((now.getMillis() - createdTime.getMillis()) > 100000){
+
                 session.removeAttribute("itemsList");
             }
 

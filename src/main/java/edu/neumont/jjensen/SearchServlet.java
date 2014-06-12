@@ -50,7 +50,13 @@ public class SearchServlet extends HttpServlet {
         }
 
         HttpSession session = request.getSession();
-        List<Item> items = (List<Item>) session.getAttribute("itemsList");
+        List<Item> items;
+        if(session.getAttribute("itemsList") != null) {
+            items = (List<Item>) session.getAttribute("itemsList");
+
+        } else  {
+            items = new ArrayList<>();
+        }
 
         int numberOfRecords = items.size();
         int numberOfPages = (int) Math.ceil(numberOfRecords * 1.0 / recordsPerPage);
