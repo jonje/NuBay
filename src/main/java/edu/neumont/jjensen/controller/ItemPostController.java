@@ -4,8 +4,12 @@ import edu.neumont.jjensen.model.ApplicationContext;
 import edu.neumont.jjensen.model.DataAccessLayer;
 import edu.neumont.jjensen.model.Item;
 import edu.neumont.jjensen.modelandview.ModelAndView;
+import edu.neumont.jjensen.service.ItemDbService;
 import org.joda.time.DateTime;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
@@ -15,18 +19,13 @@ import java.util.IllegalFormatException;
 /**
  * Created by jjensen on 5/7/14.
  */
-public class ItemPostController {
-    private HttpServletResponse response;
-    private HttpServletRequest request;
-    private DataAccessLayer dal;
-    private ApplicationContext applicationContext;
 
-    public ItemPostController(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-        this.applicationContext = ApplicationContext.getInstance();
-        this.dal = (DataAccessLayer) applicationContext.getAttribute("dal");
-    }
+@Stateless
+@LocalBean
+public class ItemPostController {
+    @Inject HttpServletResponse response;
+    @Inject HttpServletRequest request;
+    @Inject ItemDbService itemService;
 
     public ModelAndView createItem() {
         ModelAndView modelView = new ModelAndView();
@@ -38,25 +37,18 @@ public class ItemPostController {
         if(stringId.isEmpty()) {
             item = new Item();
             item = loadItem(item);
-            id = dal.create(item);
-            item.setId(id);
-
-
+            itemService.updateItem(item);
+            
         } else {
             id = parseId(stringId);
-            item = dal.getItem(id);
+            item = itemService.findById(id);
             item = loadItem(item);
-
-            if(dal.update(item)) {
-                request.setAttribute("status", true);
-            } else {
-                request.setAttribute("status", false);
-            }
+            itemService.updateItem(item);
 
         }
 
         modelView.setModel(item);
-        modelView.setView("/item/" + id);
+        modelView.setView("/item/" + item.getId());
 
         return modelView;
     }
@@ -66,7 +58,7 @@ public class ItemPostController {
     }
 
     public ModelAndView placeBid(long id) {
-        Item item = dal.getItem(id);
+        Item item = itemService.findById(id);
         String bid = request.getParameter("bid");
 
         if(bid.isEmpty()) {
@@ -83,6 +75,7 @@ public class ItemPostController {
 
         }
 
+        itemService.updateItem(item);
         ModelAndView modelView = new ModelAndView();
         modelView.setModel(item);
 

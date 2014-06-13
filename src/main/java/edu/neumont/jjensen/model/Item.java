@@ -9,6 +9,7 @@ import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
+import javax.persistence.*;
 import javax.swing.*;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -16,16 +17,40 @@ import java.text.SimpleDateFormat;
 /**
  * Created by jjensen on 4/23/14.
  */
+@Entity
+@Table(name="Item")
 public class Item {
+    @Id
+    @Column(name="id")
+    @SequenceGenerator(name="item_seq", sequenceName = "item_seq")
+    @GeneratedValue(generator = "item_seq", strategy = GenerationType.SEQUENCE)
     private long id;
+
+    @Column(name="currentBid")
     private BigDecimal currentBid;
+
+    @Column(name="startingBid")
     private BigDecimal startingBid;
+
+    @Column(name="expirationDate")
     private DateTime expirationDate;
     private DateTimeFormatter formatter = DateTimeFormat.forPattern("MM/dd/yyyy");
+
+    @Column(name="imgUrl")
     private String imgUrl;
+
+    @Column(name="title")
     private String title;
+
+    @Column(name="description")
     private String description;
+
+    @Column(name="numberOfBids")
     private int numberOfBids = 0;
+
+    @ManyToOne
+    @JoinColumn(name="accountId")
+    private Account account;
 
     public Item() {
         currentBid = new BigDecimal("0.00");

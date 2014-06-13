@@ -47,8 +47,6 @@
           <artifactId>guava</artifactId>
           <version>12.0</version>
       </dependency>
-
-
   </dependencies>
 
 </project>

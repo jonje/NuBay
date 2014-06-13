@@ -4,29 +4,27 @@ import edu.neumont.jjensen.model.ApplicationContext;
 import edu.neumont.jjensen.model.DataAccessLayer;
 import edu.neumont.jjensen.model.Item;
 import edu.neumont.jjensen.modelandview.ModelAndView;
+import edu.neumont.jjensen.service.ItemDbService;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by jjensen on 5/7/14.
  */
+@Stateless
+@LocalBean
 public class ItemGetController {
-    private DataAccessLayer dal;
-    private HttpServletRequest request;
-    private HttpServletResponse response;
-
-    public ItemGetController(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
-        ApplicationContext context = ApplicationContext.getInstance();
-        this.dal = (DataAccessLayer) context.getAttribute("dal");
-
-    }
+    @Inject ItemDbService itemService;
+    @Inject HttpServletRequest request;
+    @Inject HttpServletResponse response;
 
     public ModelAndView retrieveItem(long id) {
         ModelAndView modelView = new ModelAndView();
-        modelView.setModel(dal.getItem(id));
+        modelView.setModel(itemService.findById(id));
         modelView.setView("/WEB-INF/item.jsp");
         return modelView;
     }
@@ -41,13 +39,13 @@ public class ItemGetController {
 
     public ModelAndView deleteItem(long id) {
         ModelAndView modelView = new ModelAndView();
-        modelView.setModel(dal.getItem(id));
+        modelView.setModel(itemService.findById(id));
 
-        if(dal.delete(id)) {
-            modelView.setView("/WEB-INF/deleted.jsp");
-        } else {
-            modelView.setView("/item/" + id);
-        }
+//        if() {
+//            modelView.setView("/WEB-INF/deleted.jsp");
+//        } else {
+//            modelView.setView("/item/" + id);
+//        }
         return modelView;
     }
 }

@@ -7,6 +7,7 @@ import edu.neumont.jjensen.model.DataAccessLayer;
 import edu.neumont.jjensen.model.Item;
 import edu.neumont.jjensen.modelandview.ModelAndView;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,10 +24,13 @@ import java.util.regex.Pattern;
  */
 @WebServlet("/item/*")
 public class ItemRouter extends HttpServlet {
-    private static DataAccessLayer dal = DataAccessFactory.create("hashmap");
+    //private static DataAccessLayer dal = DataAccessFactory.create("hashmap");
 
     private final static Pattern pattern = Pattern.compile("(/item)(/)([0-9]+)([/a-z]*)");
     private final static Pattern functionPattern = Pattern.compile("(/item/)([a-z]+)");
+
+    @Inject ItemGetController getController;
+    @Inject ItemPostController postController;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +38,7 @@ public class ItemRouter extends HttpServlet {
         String uri = request.getRequestURI();
         Matcher matcher = pattern.matcher(uri);
         Matcher functionMatcher = functionPattern.matcher(uri);
-        ItemGetController getController = new ItemGetController(request, response);
+
         boolean match = false;
         String function = null;
         long id = 0;
@@ -121,7 +125,7 @@ public class ItemRouter extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ItemPostController postController = new ItemPostController(request, response);
+
         Pattern postPattern = Pattern.compile("(/item)(/[a-z]+)");
         Matcher matcher = postPattern.matcher(request.getRequestURL());
         boolean found = false;

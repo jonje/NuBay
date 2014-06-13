@@ -15,7 +15,7 @@ import java.util.Set;
  * Created by jjensen on 6/10/14.
  */
 public class SearchController {
-
+    //todo Add injection to this
     private DataAccessLayer dal;
     private HttpServletRequest request;
     private HttpServletResponse response;
